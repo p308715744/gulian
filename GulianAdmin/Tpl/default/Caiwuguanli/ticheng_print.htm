@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>团统计</title>
+<link rel="stylesheet" type="text/css" href="<{:__PUBLIC__}>/gulianstyle/styles/cssold.css">
+<link rel="stylesheet" href="<{:__PUBLIC__}>/gulianstyle/admintemp/page.css" type="text/css" media="all" />
+<script language="javascript" type="text/javascript" src="<{:__PUBLIC__}>/gulianstyle/styles/jquery-1.4.2.js"></script>
+<SCRIPT type=text/javascript src="<{:__PUBLIC__}>/gulianstyle/styles/jquery.autocomplete.min.js"></SCRIPT>
+<link href="<{:__PUBLIC__}>/gulianstyle/styles/jquery.autocomplete.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="<{:__PUBLIC__}>/gulianstyle/My97DatePicker/WdatePicker.js"></script>
+<script>
+$(function() {
+		 $('#user_name').autocomplete(names, {
+			 max: 20,    //列表里的条目数
+			 minChars: 0,    //自动完成激活之前填入的最小字符
+			 width: 400,     //提示的宽度，溢出隐藏
+			 scrollHeight: 300,   //提示的高度，溢出显示滚动条
+			 matchContains: true,    //包含匹配，就是data参数里的数据，是否只要包含文本框里的数据就显示
+			 autoFill: false,    //自动填充
+			 formatItem: function(row, i, max) {
+				 return i + '/' + max + ':"' + row.name + '"[' + row.to + ']';
+			 },
+			 formatMatch: function(row, i, max) {
+				 return row.name + row.to;
+			 },
+			 formatResult: function(row) {
+				 return row.to;
+			 }
+		 }).result(function(event, row, formatted) {
+		 });
+	 });
+</script>
+<script language="javascript">
+function printTure()   //打印函数
+{
+    document.getElementById("dayinDiv").style.display="none";//同上
+    window.print();
+    document.getElementById("dayinDiv").style.display="";
+}
+</script>
+</head>
+<body>
+<div id="dayinDiv" class="gl_jsb_box">
+<table width="1000" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#ECE9D8" id="dayinDiv" name="dayinDiv">
+  <tbody><tr>
+    <td height="20">
+        <input class="tab" value="打印" onclick="javascript:printTure();" type="button">   
+    </td>
+  </tr>
+</tbody></table>
+</div>
+<div class="hdlyRight">
+  <div id="content_bb">
+    <div class="szwz">
+      <ul>
+      </ul>
+    </div>
+    <div class="nr"> </div>
+    <div class="fanye">
+  	<table width="80%" border="0" cellpadding="0" cellspacing="0" class="bg">
+        <tbody>
+          <tr class="tr2">
+            <td height="27" width="5%" align="left" class="wbx"> 月份：</td>
+            <td  align="left" width="15%" class="wbx"><{$start_date}></td>
+            <td height="27" width="5%" align="left" class="wbx"> 日期：</td>
+            <td  align="left" width="15%" class="wbx"><{$start_day}></td>
+            <td  align="left" width="5%" class="wbx">范围：</td>
+            <td height="27" width="15%" colspan="10" align="left" class="wbx"><{$start_date1}>
+              -
+              <{$end_date1}></td>
+            <td height="27" width="5%" align="left" class="wbx"><label> 部门：</label></td>
+             <td height="27" width="15%" align="left" class="wbx"><{$department}></td>
+          </tr>
+        </tbody>
+      </table>
+
+      
+      
+      <br>
+      <table class="zsj" width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+          <tr>
+          	<td height="32" align="center" bgcolor="#ff8d00"><strong>序号</strong></td>
+          	<td height="32" align="center" bgcolor="#ff8d00"><strong>姓名</strong></td>
+<!--            <td height="32" align="center" bgcolor="#ff8d00"><strong>团号</strong></td>
+            <td height="32" align="center" bgcolor="#ff8d00"><strong>团队名称</strong></td>
+            <td height="32" align="center" bgcolor="#ff8d00"><strong>应收款</strong></td>
+            <td height="32" align="center" bgcolor="#ff8d00"><strong>应付款</strong></td>
+            <td height="32" align="center" bgcolor="#ff8d00"><strong>毛利</strong></td>
+            <td height="32" align="center" bgcolor="#ff8d00"><strong>毛利率</strong></td>
+            <td align="center" bgcolor="#ff8d00"><strong>类型</strong></td>-->
+            <td height="32" align="center" bgcolor="#ff8d00"><strong>操作人数</strong></td>
+            <td height="32" align="center" bgcolor="#ff8d00"><strong>操作费</strong></td>
+            <td height="32" align="center" bgcolor="#ff8d00"><strong>收客数</strong></td>
+            <td height="32" align="center" bgcolor="#ff8d00"><strong>收客提成</strong></td>
+<!--            <td height="32" align="center" bgcolor="#ff8d00"><strong>审核日期</strong></td>
+            <td height="32" align="center" bgcolor="#ff8d00"><strong>出团日期</strong></td>-->
+          </tr>
+        <php>$i = 0 ;foreach($tichengAll as $key => $user){$i++;</php>
+        <php>$caozuoren_sum = 0;$caozuofei_sum = 0;$shouke_sum = 0; $ticheng_sum = 0;</php>
+        <php>
+        	$j = 0 ;
+            foreach($user as $key => $zituan){
+            	
+        		$caozuoren_sum += $zituan['caozuorenshu'];
+                $caozuofei_sum += $zituan['ticheng'];
+                $shouke_sum += $zituan['qiantai']['dingdanrenshu'];
+                $ticheng_sum += $zituan['qiantai']['dingdanrenshu']*$zituan['tichenglv'];
+        </php>
+        <tr class="tr<php>echo $i%2</php>" style="display:none;">
+          <td class="xxxx" height="32" align="center"><strong>
+            <php>if($j == 0)echo $i</php>
+            </strong></td>
+          <td class="xxxx" height="32" align="center"><php>if($j == 0){</php><{$zituan['user_name']}> <php>}</php></td>
+          <td class="xxxx" height="32" align="center">
+          	<{$zituan['tuanhao']}>
+          </td>
+          <td class="xxxx" height="32" align="center" style="width:20%;">
+          	<{$zituan['mingcheng']}>
+          </td>
+          
+          <td class="xxxx" height="32" align="center"><php> echo number_format($zituan['shouru'])</php></td>
+          <td class="xxxx" height="32" align="center"><php> echo number_format($zituan['zhichu'])</php></td>
+          <td align="center" height="32" class="xxxx"><php> echo number_format($zituan['shouru'] - $zituan['zhichu'])</php></td>
+          <td align="center" height="32" class="xxxx"><php>echo sprintf( '%.2f%%',($zituan['shouru'] - $zituan['zhichu'])/$zituan['shouru'] * 100)</php></td>
+          <td align="center" height="32" class="xxxx"><{$zituan['xianlutype']}> </td>
+         <!-- <td align="center" height="32" class="xxxx"><php>if($zituan['dingdanshu']) { echo $zituan['dingdanshu'];}</php> </td>-->
+          <td align="center" height="32" class="xxxx"><php>if($zituan['caozuorenshu']) { echo $zituan['caozuorenshu'];}</php> </td>
+          <td align="center" height="32" class="xxxx"><php>if($zituan['ticheng']) { echo $zituan['ticheng']."元";}</php> </td>
+          <td align="center" height="32" class="xxxx"><php>if($zituan['qiantai']['dingdanrenshu']) { echo $zituan['qiantai']['dingdanrenshu'];}</php> </td>
+          <td align="center" height="32" class="xxxx"><php>if($zituan['qiantai']['dingdanrenshu']) { echo $zituan['qiantai']['dingdanrenshu']*$zituan['tichenglv']."元";}</php> </td>
+          <td class="xxxx" height="32" align="center"><php>echo date("Y/m/d",$zituan['caiwu_time']);</php></td>
+          <td class="xxxx" height="32" align="center"><{$zituan['chutuanriqi']}> </td>
+        </tr>
+        <php>}</php>
+        	<tr class="tr<php>echo $i%2</php>">
+              <td class="xxxx" height="32" align="center"><php>if($j == 0)echo $i</php></td>
+              <td class="xxxx" height="32" align="center"><{$zituan['user_name']}></td>
+<!--              <td class="xxxx" height="32" align="center"></td>
+              <td class="xxxx" height="32" align="center" style="width:20%;"></td>
+              
+              <td class="xxxx" height="32" align="center"></td>
+              <td class="xxxx" height="32" align="center"></td>
+              <td align="center" height="32" class="xxxx"></td>
+              <td align="center" height="32" class="xxxx"></td>
+              <td align="center" height="32" class="xxxx"></td>-->
+              <td align="center" height="32" class="xxxx"><{$caozuoren_sum}></td>
+              <td align="center" height="32" class="xxxx"><{$caozuofei_sum}>元</td>
+              <td align="center" height="32" class="xxxx"><{$shouke_sum}></td>
+              <td align="center" height="32" class="xxxx"><{$ticheng_sum}>元</td>
+<!--              <td class="xxxx" height="32" align="center"></td>
+              <td class="xxxx" height="32" align="center"></td>-->
+            </tr>
+        
+        
+        <php>$j++;}</php>
+        <script>
+		$(document).ready(function(){
+			var uname = '<{$user_name}>';
+			if(uname) {
+				
+				$("tr[title='uname_qiantai']").hide();
+				$("#"+uname).show();
+			}
+		});
+		</script>
+          </tbody>
+        
+      </table>
+    </div>
+    <div style="width:99%; margin-top:0px; float:left; height:30px; margin-bottom:20px;" ><!--翻页-->
+      <div class="page" style=" height:24px; padding-top:10px; text-align:center"><{$page}></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+</body>
+</html>

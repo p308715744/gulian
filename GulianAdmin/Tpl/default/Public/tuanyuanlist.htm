@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="<{:__PUBLIC__}>/gulianstyle/css/reset.css" rel="stylesheet" type="text/css" />
+<link href="<{:__PUBLIC__}>/gulianstyle/css/fit.css" rel="stylesheet" type="text/css" />
+<title>团员名单</title>
+<style>
+.gl_cwbb	{ background: url("<{:__PUBLIC__}>/gulianstyle/images/bjt.gif") repeat-x scroll 0 0 transparent; color:#FFFFFF;}
+.gl_cwbb th	{ border: 1px solid #CCCCCC;}
+.gl_cwbb td { border-bottom: 1px solid #E8E8E8; border-top:0; color: #494949;}
+.tr0 		{ background:#F0F0F0;}
+.tr0linka		{ color:#006655;}
+.tr0linkb		{ font-weight:bold; color:#006655;}
+.gl_cwbb_btn	{ width:130px; border:#006655 1px solid; background:#ffffff; text-align:center; font-size:14px; color:#006655; font-weight:bold; margin:10px 20px 5px; display:inline; float:left;}
+.gl_cwbb_btn:hover	{ background:#006655; color:#FFFFFF; text-decoration:none;}
+</style>
+</head>
+
+<body>
+<div id="hlt_fit_view">
+	<div id="hlt_fit_location"><!--所在位置-->
+    	<b>您所在的位置:</b>   团员名单
+    </div>
+</div>
+<a href="<{:SITE_ADMIN}>Public/export_tuanyuan">导出txt名单</a>
+<div style=" width:100%; padding:0 10px; float:left;">
+<table width="750" cellspacing="0" cellpadding="0" border="0" class="gl_cwbb">
+  <!--列表-->
+  <tr>
+    <th width="130" height="32" align="center">姓名</th>
+    <th width="130" height="32" align="center">性别</th>
+    <th width="130" height="32" align="center">类别</th>
+   	<th width="130" height="32" align="center">手机号码</th>
+  </tr>
+  
+  <php>foreach($datalist as $data){</php>
+  <tr class="tr0">
+    <td height="32" align="center"><{$data['name']}></td>
+    <td height="32" align="center"><{$data['sex']}></td>
+    <td height="32" align="center"><{$data['manorchild']}></td>
+    <td height="32" align="center"><{$data['telnum']}></td>
+  </tr>
+  <php>}</php>
+  
+</table>
+</div>
+<div id="hlt_fit_page"><!--翻页-->
+<{$page}>
+</div>
+</body>
+</html>

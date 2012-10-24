@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head id="Head1"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>
+<{$navlist}>
+</title>
+<link rel="stylesheet" type="text/css" href="<{:__PUBLIC__}>/gulianstyle/styles/cssaaa.css">
+
+</head>
+
+<body>
+    <div class="hdlyRight">
+
+
+            <div id="content_bb">
+                
+            <div class="szwz">
+                <ul>
+                  <li> <span>您所在的位置:</span><{$navlist}></li>
+                </ul>
+            </div>
+                <div class="ss">
+                    <table class="test1" width="85%" border="0" style="padding-top: 20px;">
+                        <tbody><tr>
+                            <form action="<{:SITE_ADMIN}>Public/yuangongtongxunlu" method='post'>
+							<input type="hidden" name="type" value="search">
+                            <td width="50" height="18" align="right">
+                                关键字</td>
+                            <td width="187">
+                                <input name="tbKeyword" type="text" id="tbKeyword"></td>
+                            <td>
+                                <input type="submit" name="SearchBtn" value="搜 索" id="SearchBtn" class="anu">
+                            </td>
+                            </form>
+                        </tr>
+                    </tbody></table>
+                </div>
+                
+                <div class="fanye">
+                    <table class="bg" width="100%" border="0" cellpadding="0" cellspacing="0">
+                                <tbody><tr>
+                                    <th height="32" align="center"></th>
+                                    <th height="32" align="center">
+                                        部门
+                                    </th>
+                                    <th height="32" align="center">
+                                        职位
+                                    </th>
+                                    <th height="32" align="center">
+                                        姓名
+                                    </th>
+                                    <th height="32" align="center">
+                                        手机
+                                    </th>
+                                    <th height="32" align="center">
+                                        办公电话
+                                    </th>
+                                </tr>
+                            
+                            
+                            <php> $i = 0;  foreach($kehuAll as $kehu){ $i++;
+                            </php>
+                            
+                                <tr class="tr<php>echo $i%2+1</php>">
+                                  <td height="27" align="center"  width="2%">
+                                      <span><{$i}></span>
+                                      </td>
+                                	<td width="5%" height="27" align="center">
+                                        <{$kehu['department']}>
+                                    </td>
+                                    <td width="5%" height="27" align="center">
+                                        <{$kehu['role']}>
+                                    </td>
+                                    <td width="5%" height="27" align="center">
+                                        <{$kehu['realname']}>
+                                    </td>
+                                    <td width="5%" height="27" align="center">
+                                        <{$kehu['mobiletel']}>
+                                    </td>
+                                    <td width="5%" height="27" align="center">
+                                        <{$kehu['officetel']}>
+                                    </td>
+                                </tr>
+                            
+                            <php>}
+                            </php>
+                            
+                    </tbody></table>
+                </div>
+            </div>
+            
+            
+    </div>
+
+
+</body>
+</html>
